@@ -21,6 +21,7 @@ class SharePointListsConnector(Connector):
         self.auth_type = config.get('auth_type')
         logger.info('init:sharepoint_list_title={}, auth_type={}'.format(self.sharepoint_list_title, self.auth_type))
         self.expand_lookup = config.get("expand_lookup", False)
+        self.date_string_only = config.get("date_string_only", False)
         self.metadata_to_retrieve = config.get("metadata_to_retrieve", [])
         advanced_parameters = config.get("advanced_parameters", False)
         self.write_mode = "create"
@@ -108,7 +109,7 @@ class SharePointListsConnector(Connector):
         for column_to_format, type_to_process in self.client.columns_to_format:
             value = row.get(column_to_format)
             if value:
-                row[column_to_format] = sharepoint_to_dss_date(value)
+                row[column_to_format] = sharepoint_to_dss_date(value, self.date_string_only)
         return row
 
     def get_writer(self, dataset_schema=None, dataset_partitioning=None,
