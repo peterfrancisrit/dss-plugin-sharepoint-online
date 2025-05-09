@@ -76,6 +76,14 @@
             "mandatory": true
         },
         {
+            "name": "date_string_only",
+            "label": "Parse dates as string",
+            "type": "BOOLEAN",
+            "defaultValue": false,
+            "visibilityCondition": true,
+            "mandatory": true
+        },
+        {
             "name": "metadata_to_retrieve",
             "label": "Metadata to retrieve",
             "type": "MULTISELECT",
